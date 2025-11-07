@@ -1,75 +1,87 @@
 <?php
-session_start();
+    session_start();
 
-// Cek apakah user sudah login
-if (!isset($_SESSION['username'])) {
-  header("Location: index.php");
-  exit;
-}
+    // Cek apakah user sudah login
+    if (!isset($_SESSION['username'])) {
+        header("Location: login.php");
+        exit;
+    }
+
+    $kode_barang = [
+        'K001', 'K002', 'K003', 'K004', 'K005'
+    ];
+
+     $nama_barang = [
+        'Teh Pucuk',
+        'Sukro',
+        'Sprite',
+        'Coca Cola',
+        'Chitose'
+    ];
+
+    $harga_barang = [
+        3000, 2500, 5000, 6000, 4000
+    ];
+
+    
+
 ?>
 
+
 <!DOCTYPE html>
-<html lang="id">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Halaman Admin</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f5f7fb;
-      margin: 0;
-      padding: 0;
-    }
+<html>
+    <head>
+        <title>Dashboard</title>
+        <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        header {
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .cotainer1 {
+            color: white;
+            text-align: center;
+        }
+        .container2 {
+            border-radius: 5px;
+        }
+        h2 {
+            color: #333;
+        }
+        a {
+            display: inline-block;
+            margin-top: 5px;
+            padding: 10px 15px;
+            background-color: #007BFF;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+        }
+        a:hover {
+            background-color: #0056b3;
+        }
+        </style>
+    </head>
 
-    .container {
-      position: absolute;
-      top: 20px;
-      left: 20px;
-      text-align: left;
-    }
-
-    h2 {
-      margin: 0 0 5px 0;
-      color: #333;
-    }
-
-    p {
-      margin: 0;
-      color: #555;
-      font-size: 14px;
-    }
-
-    button {
-      margin-top: 10px;
-      background-color: #ffffff;
-      color: #333;
-      border: 1px solid #ccc;
-      padding: 6px 12px;
-      border-radius: 5px;
-      cursor: pointer;
-      transition: background-color 0.3s;
-    }
-
-    button:hover {
-      background-color: #f0f0f0;
-    }
-  </style>
-</head>
-
-<body>
-  <div class="container">
-    <h2>Selamat datang, admin!</h2>
-    <p>Role: Dosen</p>
-    <button onclick="logout()">Logout</button>
-  </div>
-
-  <script>
-    function logout() {
-      alert("Anda telah logout!");
-      // contoh redirect ke halaman login
-      window.location.href = "index.php";
-    }
-  </script>
-</body>
+    <body>
+        <header>
+            <div class="container1">
+                <h1>--Polgan Mart--</h1>
+                <p>Sistem penjualan sederhana</p>
+            </div>
+            <div class="container2">
+                <?php
+                    echo "<h2>Selamat datang, ". $_SESSION['username'] ."!</h2>";
+                ?>
+                <p>Role: <?php echo $_SESSION['role']; ?></p>
+                <a href="logout.php">Logout</a>
+            </div>
+        </header>
+    </body>
 </html>
