@@ -7,23 +7,15 @@
         exit;
     }
 
-    $kode_barang = [
-        'K001', 'K002', 'K003', 'K004', 'K005'
+    $barang = [
+    ["B001", "Teh Pucuk", 5000],
+    ["B002", "Sukro", 3000],
+    ["B003", "Sprite", 2000],
+    ["B003", "Coca Cola", 2000],
+    ["B003", "Pocari", 2000],
     ];
 
-     $nama_barang = [
-        'Teh Pucuk',
-        'Sukro',
-        'Sprite',
-        'Coca Cola',
-        'Chitose'
-    ];
-
-    $harga_barang = [
-        3000, 2500, 5000, 6000, 4000
-    ];
-
-    $jumlah = count($nama_barang) - 1;
+    $jumlah = count($barang) - 1;
     $beli = 0;
     $total = 0;
     $grandtotal = 0
@@ -124,13 +116,18 @@
                     for ($i=0; $i < rand(1, $jumlah); $i++) {
                         $beli = rand(1, 10);
                         $id_barang = rand(0, $jumlah);
-                        $total = $harga_barang[$i] * $beli;
+                        $kode_barang = $barang[$id_barang][0];
+                        $nama_barang = $barang[$id_barang][1];
+                        $harga_barang = $barang[$id_barang][2];
+
+                        $beli = rand(1, 10);
+                        $total = $harga_barang * $beli;
                         $grandtotal += $total;
 
                         echo "<tr>";
-                        echo "<td>" . $kode_barang[$id_barang] . "</td>";
-                        echo "<td>" . $nama_barang[$id_barang] . "</td>";
-                        echo "<td style='text-align:right;'>" . number_format($harga_barang[$id_barang], 0, ',', '.') . "</td>";
+                        echo "<td>" . $kode_barang . "</td>";
+                        echo "<td>" . $nama_barang . "</td>";
+                        echo "<td style='text-align:right;'>" . number_format($harga_barang, 0, ',', '.') . "</td>";
                         echo "<td style='text-align:center;'>" . $beli . "</td>";
                         echo "<td style='text-align:right;'>" . number_format($total, 0, ',', '.') . "</td>";
                         echo "</tr>";
